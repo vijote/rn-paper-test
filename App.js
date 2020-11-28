@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Appbar, Searchbar } from 'react-native-paper';
 import moment from 'moment';
-import Icon from './components/Icon';
+import LightingIcon from './components/LightingIcon';
 import RainIcon from './components/RainIcon';
 import SunIcon from './components/SunIcon';
+import SnowIcon from './components/SnowIcon';
 
 const theme = {
   ...DefaultTheme,
@@ -23,7 +24,7 @@ export default function App() {
   
   return (
     <PaperProvider theme={theme}>
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
@@ -32,8 +33,9 @@ export default function App() {
         />
         <View style={styles.weatherContainer}>
           <Text style={styles.date}>{date}</Text>
-          <Icon name='snow'/>
-          {/* <RainIcon/> */}
+          <LightingIcon/>
+          <SnowIcon/>
+          <RainIcon/>
           <SunIcon/>
         </View>
         <Appbar style={styles.bottom}>
@@ -48,7 +50,7 @@ export default function App() {
                 onPress={() => console.log('Pressed delete')}
               />
         </Appbar>
-      </SafeAreaView>
+      </View>
     </PaperProvider>
   );
 }
