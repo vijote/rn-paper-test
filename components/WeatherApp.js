@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { DefaultTheme, Modal, Provider as PaperProvider } from 'react-native-paper';
+import { capitalize } from './helpers';
 import { Searchbar } from 'react-native-paper';
 import { Icon } from 'react-native-elements'
 import axios from 'axios';
@@ -34,11 +35,6 @@ export default function WeatherApp() {
         }
     }
 
-    const formatError = (error) => {
-        let formattedError = error.charAt(0).toUpperCase() + error.slice(1,error.length)
-        return formattedError;
-    }
-
     const showSearchBar = () => {
         setToggleSearch(!toggleSearch);
     }
@@ -57,10 +53,10 @@ export default function WeatherApp() {
                         style={styles.search}
                         onSubmitEditing={searchCity}
                     />
-                    <Text style={styles.error}>{error.length > 0 ? `${formatError(error)}!` : ''}</Text>
+                    <Text style={styles.error}>{error.length > 0 ? `${capitalize(error)}!` : ''}</Text>
                 </Modal>
                 <Modal visible={weather.hasOwnProperty('main')}>
-                    <WeatherDisplay weather={weather.weather}/>
+                    <WeatherDisplay weather={weather}/>
                 </Modal>
             </View>
         </PaperProvider>
